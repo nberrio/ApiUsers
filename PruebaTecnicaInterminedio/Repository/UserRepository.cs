@@ -52,9 +52,9 @@
             return list;
         }
 
-        public async Task<Usuario> GetUsuarioById(Usuario UsuarioId)
+        public async Task<Usuario> GetUsuarioById(string userEmil)
         {
-            var user =  await _pruebaJuniorContext.Usuarios.Where(u => u.Email == UsuarioId.Email).FirstOrDefaultAsync();
+            var user =  await _pruebaJuniorContext.Usuarios.Where(u => u.Email == userEmil).FirstOrDefaultAsync();
             if (user == null) 
             {
                 return new Usuario();
@@ -63,13 +63,19 @@
             return user;
         }
 
-        public async Task<bool> UpdateUser(Usuario usuario)
+        public async Task<bool> UpdateUser(UpdateUserDto updateUserDto)
         {
-            var userupdate = await _pruebaJuniorContext.Usuarios.Where(u => u.Email == usuario.Email).FirstOrDefaultAsync();
+            var userupdate = await _pruebaJuniorContext.Usuarios.Where(u => u.Email == updateUserDto.OldEmail).FirstOrDefaultAsync();
             if (userupdate == null) 
             {
                 return false;
             }
+
+            userupdate.Active = updateUserDto.Active;
+            userupdate.Email = updateUserDto.Email;
+            userupdate.BurnsDay = updateUserDto.BurnsDay;
+            userupdate.NameUser = updateUserDto.NameUser;
+
             await _pruebaJuniorContext.SaveChangesAsync();
             return true;
         }

@@ -37,9 +37,7 @@
             {
                 return BadRequest(ModelState);
             }
-
-            var email = _usersRepository.IsValidEmail(createUserDto.Email);
-            if (!email) { ModelState.AddModelError("", $"Email no valido");  return StatusCode(404, ModelState); }
+            if (!_usersRepository.IsValidEmail(createUserDto.Email)) { ModelState.AddModelError("", $"Email no valido");  return StatusCode(404, ModelState); }
             TimeSpan newTime = DateTime.Now.Subtract(createUserDto.BurnsDay);
             if (newTime.TotalDays < 6571) 
             {
@@ -63,7 +61,7 @@
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteUSer(DeleteUserDto deleteUserDto) 
+        public async Task<IActionResult> DeleteUSer([FromBody] DeleteUserDto deleteUserDto) 
         {
             if (!ModelState.IsValid)
             {
@@ -99,7 +97,56 @@
             }
             return Ok(lista);
         }
-        //public IActionResult GetUsuarioById() { }
-        //public IActionResult UpdateUser() { }
+
+        [HttpGet("userGetByEmail")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetUserById([FromBody] DeleteUserDto getUserById) 
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (getUserById == null)
+            {
+                return BadRequest(ModelState);
+            }
+            var lista = await _usersRepository.GetUsuarioById(getUserById.Email);
+            if (lista == null)
+            {
+                ModelState.AddModelError("", $"There is not data");
+                return StatusCode(404, ModelState);
+            }
+            return Ok(lista);
+
+        }
+
+        [HttpPost("userUpdate")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateUser([FromBody]UpdateUserDto updateUserDto) 
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (updateUserDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+            if (!_usersRepository.IsValidEmail(updateUserDto.OldEmail) || !_usersRepository.IsValidEmail(updateUserDto.Email))
+            {
+                ModelState.AddModelError("", $"Email no valido"); return StatusCode(404, ModelState);
+            }
+            var respuesta = await _usersRepository.UpdateUser(updateUserDto);
+            if (!respuesta)
+            {
+                ModelState.AddModelError("", $"We can't update de register");
+                return StatusCode(404, ModelState);
+            }
+            return Ok();
+        }
     }
 }

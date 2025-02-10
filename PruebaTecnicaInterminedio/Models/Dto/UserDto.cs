@@ -24,9 +24,9 @@
         public string Email { get; set; }
     }
 
-    public class UpdateUserDto 
+    public class UpdateUserDto : CreateUserDto
     {
-        public string? Email { get; set; }
+        public string? OldEmail { get; set; }
     }
 
     public class DeleteUserDto

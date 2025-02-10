@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PruebaTecnicaInterminedio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd31dab16363587203272842046cdaa9f836f5be")]
 [assembly: System.Reflection.AssemblyProductAttribute("PruebaTecnicaInterminedio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PruebaTecnicaInterminedio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

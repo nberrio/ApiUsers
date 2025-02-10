@@ -136,3 +136,4 @@ C:\Users\TP\OneDrive\Escritorio\ApiResful\PruebaTecnicaInterminedio\PruebaTecnic
 C:\Users\TP\OneDrive\Escritorio\ApiResful\PruebaTecnicaInterminedio\PruebaTecnicaInterminedio\obj\Debug\net8.0\PruebaTecnicaInterminedio.pdb
 C:\Users\TP\OneDrive\Escritorio\ApiResful\PruebaTecnicaInterminedio\PruebaTecnicaInterminedio\obj\Debug\net8.0\PruebaTecnicaInterminedio.genruntimeconfig.cache
 C:\Users\TP\OneDrive\Escritorio\ApiResful\PruebaTecnicaInterminedio\PruebaTecnicaInterminedio\obj\Debug\net8.0\ref\PruebaTecnicaInterminedio.dll
+C:\Users\TP\OneDrive\Escritorio\ApiResful\PruebaTecnicaInterminedio\PruebaTecnicaInterminedio\obj\Debug\net8.0\PruebaTecnicaInterminedio.sourcelink.json
